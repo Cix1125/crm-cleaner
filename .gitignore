@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+
+# 工具的输出目录（示例运行会产生）
+out/
+
+# 编辑器
+.vscode/
+.idea/
+.DS_Store

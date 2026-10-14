@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crm-cleaner"
+version = "0.1.0"
+description = "客户主数据清洗与去重：合并多份列名不一致的客户名单，找出重复，输出主数据与变更日志"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["crm", "data-cleaning", "deduplication", "data-migration", "customer-master-data"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business",
+]
+
+# 运行时零依赖 —— 这正是这个项目的设计目标之一
+dependencies = []
+
+[project.optional-dependencies]
+# 测试用标准库 unittest 写的，不装 pytest 也能跑：
+#     python -m unittest discover -s tests -v
+# 装了 pytest 可以跑得更舒服（pytest 兼容 unittest.TestCase）：
+#     pip install -e ".[dev]"  &&  pytest -q
+dev = ["pytest>=7"]
+
+[project.scripts]
+crm-cleaner = "crm_cleaner.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/<your-name>/crm-cleaner"
+
+[tool.setuptools]
+packages = ["crm_cleaner"]

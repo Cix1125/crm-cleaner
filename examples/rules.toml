@@ -1,0 +1,46 @@
+# crm-cleaner 规则示例
+# 用法：python -m crm_cleaner -i examples/customers_a.csv examples/customers_b.csv -r examples/rules.toml
+
+# ── 字段认领 ──
+# 不同系统导出来的表，同一件事叫不同名字。这里给每个逻辑字段配一串候选列名，
+# 工具会按顺序去表头里找，找到第一个匹配的就算认领成功。
+[columns]
+company    = ["公司名称", "客户名称", "公司", "company", "company_name"]
+contact    = ["联系人", "contact", "contact_name"]
+email      = ["邮箱", "电子邮箱", "email", "e-mail"]
+phone      = ["电话", "手机", "联系电话", "phone", "tel", "mobile"]
+city       = ["城市", "地区", "city", "region"]
+updated_at = ["更新时间", "更新日期", "updated_at", "update_time"]
+
+[normalize]
+# 是否去掉公司名里的括号内容。
+# 默认 false —— 「XX(上海)」和「XX(北京)」是两家不同的公司，去掉会错误合并。
+# 只有当括号里明确是备注、不是地区/分支时才打开。
+strip_parentheses = false
+
+[match]
+# 第 1 层：精确键。命中任意一个就算同一客户。
+exact_keys = ["email", "phone"]
+
+# 第 2 层：公司名规范化后相同（去掉「有限公司 / Ltd. / Inc.」这类后缀再比）
+company_key = true
+
+# 第 3 层：相似度阈值（0~1）。设 0 表示关闭这一层。
+# 定高了会漏（"洛阳新材" vs "洛阳新材料" 相似度 0.889），定低了会误合并。
+similarity_threshold = 0.88
+
+# 相似度比较前先按首字过滤，省掉大量无意义的比较
+similarity_prefilter = true
+
+[merge]
+# 一组里哪条当主记录：
+#   most_complete   —— 字段最全的那条（默认）
+#   source_priority —— 按下面的 source_order 排
+#   latest          —— updated_at 最新的那条
+master_policy = "most_complete"
+
+# 主记录某个字段为空时，用同组其他记录的值补上
+fill_empty_from_others = true
+
+# master_policy = "source_priority" 时才会用到
+# source_order = ["customers_a.csv", "customers_b.csv"]
