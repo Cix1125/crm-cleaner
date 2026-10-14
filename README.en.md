@@ -1,5 +1,7 @@
 # crm-cleaner
 
+[![tests](https://github.com/Cix1125/crm-cleaner/actions/workflows/ci.yml/badge.svg)](https://github.com/Cix1125/crm-cleaner/actions/workflows/ci.yml)
+
 **Customer master data cleaning and de-duplication** — a small CLI tool for CRM implementation and data migration projects.
 
 It merges several customer lists that **do not share the same columns**, cleans them, finds duplicates, and produces **master data + a duplicate-group report + a change log**.
@@ -27,7 +29,7 @@ Today this is done by scrolling through Excel. This tool automates it and keeps 
 Python 3.11+ and nothing else.
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/Cix1125/crm-cleaner.git
 cd crm-cleaner
 
 python -m crm_cleaner \

@@ -35,7 +35,9 @@ dev = ["pytest>=7"]
 crm-cleaner = "crm_cleaner.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/<your-name>/crm-cleaner"
+Homepage = "https://github.com/Cix1125/crm-cleaner"
+Repository = "https://github.com/Cix1125/crm-cleaner"
+Issues = "https://github.com/Cix1125/crm-cleaner/issues"
 
 [tool.setuptools]
 packages = ["crm_cleaner"]

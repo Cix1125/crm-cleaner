@@ -1,5 +1,7 @@
 # crm-cleaner
 
+[![tests](https://github.com/Cix1125/crm-cleaner/actions/workflows/ci.yml/badge.svg)](https://github.com/Cix1125/crm-cleaner/actions/workflows/ci.yml)
+
 **客户主数据清洗与去重** —— 给 CRM 实施、数据迁移和系统切换用的小工具。
 
 把几份**格式不一致**的客户名单合并、清洗、判重，输出**主数据 + 重复组报告 + 变更日志**。
@@ -27,7 +29,7 @@ CRM 系统上线、数据迁移的时候，第一道坎永远是客户数据乱�
 不用装任何东西，Python 3.11+ 即可。
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/Cix1125/crm-cleaner.git
 cd crm-cleaner
 
 python -m crm_cleaner \
