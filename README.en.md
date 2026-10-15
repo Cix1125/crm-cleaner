@@ -10,6 +10,10 @@ It merges several customer lists that **do not share the same columns**, cleans 
 
 ---
 
+![Duplicate group report](docs/report.png)
+
+> This is the actual output of `out/duplicates.html`: every duplicate group, where each record came from (file#line), which one was chosen as the master (★), and the field-level change log.
+
 ## The problem it solves
 
 When a CRM goes live or data is migrated, the first wall is always messy customer data:
